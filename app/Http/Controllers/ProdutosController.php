@@ -18,8 +18,8 @@ class ProdutosController extends Controller {
     }
 
     public function store(ProdutoRequest $request) {
-        $novo_ator = $request->all();
-        Produto::create($novo_ator);
+        $novo_produto = $request->all();
+        Produto::create($novo_produto);
 
         return redirect()->route("produtos");
     }
@@ -30,8 +30,8 @@ class ProdutosController extends Controller {
     }
     
     public function edit($id) {
-        $ator = Produto::find($id);
-        return view('produtos.edit', compact('ator'));
+        $produto = Produto::find($id);
+        return view('produtos.edit', compact('produto'));
     }
 
     public function update(ProdutoRequest $request, $id) {
