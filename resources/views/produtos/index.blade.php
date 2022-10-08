@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('adminlte::page')
 
 @section('title', 'Listagem de produtos')
 
