@@ -27,3 +27,12 @@ Route::group(['prefix'=> 'produtos', 'where'=>['id'=>'[0-9]+']], function() {
     Route::put('{id}/update', ['as'=>'produtos.update', 'uses'=> 'ProdutosController@update']);
     Route::post('store', ['as'=>'produtos.store', 'uses'=> 'ProdutosController@store']);
 });
+
+Route::group(['prefix'=> 'cidades', 'where'=>['id'=>'[0-9]+']], function() {
+    Route::get('', ['as'=>'cidades', 'uses'=> 'CidadesController@index']);
+    Route::get('create', ['as'=>'cidades.create', 'uses'=> 'CidadesController@create']);
+    Route::get('{id}/destroy', ['as'=>'cidades.destroy', 'uses'=> 'CidadesController@destroy']);
+    Route::get('{id}/edit', ['as'=>'cidades.edit', 'uses'=> 'CidadesController@edit']);
+    Route::put('{id}/update', ['as'=>'cidades.update', 'uses'=> 'CidadesController@update']);
+    Route::post('store', ['as'=>'cidades.store', 'uses'=> 'CidadesController@store']);
+});
