@@ -20,7 +20,7 @@
 
     <div class="form-group">
         {!! Form::label("peso", "Peso:") !!}
-        {!! Form::number("peso", $produto->peso, ["class"=>"form-control", "required"]) !!}
+        {!! Form::number("peso", $produto->peso, ["class"=>"form-control", "required", "step"=>"0.01"]) !!}
     </div>
 
     <div class="form-group">
