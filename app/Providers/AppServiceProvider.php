@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 use \App\Produto;
+use \App\Cidade;
+use \App\Veiculo;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,12 +30,26 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Dispatcher $events)
     {
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
-            $event->menu->add('PRODUTOS');
+            //$event->menu->add('PRODUTOS');
             $event->menu->add([
                 'text'        => 'Produtos',
                 'url'         => 'produtos',
-                'icon'        => 'fas fa-fw fa-users',
+                'icon'        => 'fas fa-fw fa-shopping-cart',
                 'label'       => Produto::count(),
+                'label_color' => 'success',
+            ]);
+            $event->menu->add([
+                'text'        => 'Cidades',
+                'url'         => 'cidades',
+                'icon'        => 'fas fa-fw fa-flag',
+                'label'       => Cidade::count(),
+                'label_color' => 'success',
+            ]);
+            $event->menu->add([
+                'text'        => 'Veículos',
+                'url'         => 'veiculos',
+                'icon'        => 'fas fa-fw fa-truck',
+                'label'       => Veiculo::count(),
                 'label_color' => 'success',
             ]);
         });
