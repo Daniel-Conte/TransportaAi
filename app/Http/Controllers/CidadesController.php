@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cidade;
 use App\Http\Requests\CidadeRequest;
+use Illuminate\Support\Facades\Crypt;
 
 class CidadesController extends Controller
 {
@@ -46,12 +47,16 @@ class CidadesController extends Controller
         return $ret;
     }
     
-    public function edit($id) {
+    public function edit(Request $request) {
+        $id = Crypt::decrypt($request->get("id"));
+
         $cidade = Cidade::find($id);
         return view('cidades.edit', compact('cidade'));
     }
 
-    public function update(CidadeRequest $request, $id) {
+    public function update(CidadeRequest $request) {
+        $id = Crypt::decrypt($request->get("id"));
+
         Cidade::find($id)->update($request->all());
         return redirect()->route('cidades');
     }

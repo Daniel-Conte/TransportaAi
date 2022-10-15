@@ -33,7 +33,7 @@
                     <td>{{ $cidade->nome }}</td>
                     <td>{{ $cidade->uf }}</td>
                     <td>
-                        <a href="{{ route("cidades.edit", ["id"=>$cidade->id]) }}" class="btn-sm btn-success">Editar</a>
+                        <a href="{{ route("cidades.edit", ["id"=> \Crypt::encrypt($cidade->id)]) }}" class="btn-sm btn-success">Editar</a>
                         <a href="#" onclick="return ConfirmaExclusao({{ $cidade->id }})" class="btn-sm btn-danger">Remover</a>
                     </td>
                 </tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProdutoRequest;
 use App\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class ProdutosController extends Controller {
     
@@ -46,12 +47,16 @@ class ProdutosController extends Controller {
         return $ret;
     }
     
-    public function edit($id) {
+    public function edit(Request $request) {
+        $id = Crypt::decrypt($request->get("id"));
+
         $produto = Produto::find($id);
         return view('produtos.edit', compact('produto'));
     }
 
-    public function update(ProdutoRequest $request, $id) {
+    public function update(ProdutoRequest $request) {
+        $id = Crypt::decrypt($request->get("id"));
+
         Produto::find($id)->update($request->all());
         return redirect()->route('produtos');
     }

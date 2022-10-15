@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VeiculoRequest;
 use App\Veiculo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class VeiculosController extends Controller {
     public function index(Request $filtro) {
@@ -45,12 +46,16 @@ class VeiculosController extends Controller {
         return $ret;
     }
     
-    public function edit($id) {
+    public function edit(Request $request) {
+        $id = Crypt::decrypt($request->get("id"));
+
         $veiculo = Veiculo::find($id);
         return view('veiculos.edit', compact('veiculo'));
     }
 
-    public function update(VeiculoRequest $request, $id) {
+    public function update(VeiculoRequest $request) {
+        $id = Crypt::decrypt($request->get("id"));
+
         Veiculo::find($id)->update($request->all());
         return redirect()->route('veiculos');
     }
