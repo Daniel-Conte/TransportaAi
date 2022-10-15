@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(["middleware" => "auth"], function() {
     Route::group(['prefix'=> 'produtos', 'where'=>['id'=>'[0-9]+']], function() {
-        Route::get('', ['as'=>'produtos', 'uses'=> 'ProdutosController@index']);
+        Route::any('', ['as'=>'produtos', 'uses'=> 'ProdutosController@index']);
         Route::get('create', ['as'=>'produtos.create', 'uses'=> 'ProdutosController@create']);
         Route::get('{id}/destroy', ['as'=>'produtos.destroy', 'uses'=> 'ProdutosController@destroy']);
         Route::get('{id}/edit', ['as'=>'produtos.edit', 'uses'=> 'ProdutosController@edit']);
@@ -30,7 +30,7 @@ Route::group(["middleware" => "auth"], function() {
     });
 
     Route::group(['prefix'=> 'cidades', 'where'=>['id'=>'[0-9]+']], function() {
-        Route::get('', ['as'=>'cidades', 'uses'=> 'CidadesController@index']);
+        Route::any('', ['as'=>'cidades', 'uses'=> 'CidadesController@index']);
         Route::get('create', ['as'=>'cidades.create', 'uses'=> 'CidadesController@create']);
         Route::get('{id}/destroy', ['as'=>'cidades.destroy', 'uses'=> 'CidadesController@destroy']);
         Route::get('{id}/edit', ['as'=>'cidades.edit', 'uses'=> 'CidadesController@edit']);
@@ -39,7 +39,7 @@ Route::group(["middleware" => "auth"], function() {
     });
 
     Route::group(['prefix'=> 'veiculos', 'where'=>['id'=>'[0-9]+']], function() {
-        Route::get('', ['as'=>'veiculos', 'uses'=> 'VeiculosController@index']);
+        Route::any('', ['as'=>'veiculos', 'uses'=> 'VeiculosController@index']);
         Route::get('create', ['as'=>'veiculos.create', 'uses'=> 'VeiculosController@create']);
         Route::get('{id}/destroy', ['as'=>'veiculos.destroy', 'uses'=> 'VeiculosController@destroy']);
         Route::get('{id}/edit', ['as'=>'veiculos.edit', 'uses'=> 'VeiculosController@edit']);

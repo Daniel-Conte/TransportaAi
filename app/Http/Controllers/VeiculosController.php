@@ -7,8 +7,17 @@ use App\Veiculo;
 use Illuminate\Http\Request;
 
 class VeiculosController extends Controller {
-    public function index() {
-        $veiculos = Veiculo::orderBy("placa")->paginate(5);
+    public function index(Request $filtro) {
+        $filtragem = $filtro->get('placa_filtro');
+
+        if($filtragem == null) {
+            $veiculos = Veiculo::orderBy("placa")->paginate(5);
+        } else {
+            $veiculos = Veiculo::where("placa", "like", "%".$filtragem."%")
+                ->orderBy("placa")
+                ->paginate(5)
+                ->setpath("veiculos?placa_filtro=".$filtragem);
+        }
         return view('veiculos.index', ['veiculos' => $veiculos]);
     }
 

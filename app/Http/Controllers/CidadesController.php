@@ -8,8 +8,17 @@ use App\Http\Requests\CidadeRequest;
 
 class CidadesController extends Controller
 {
-    public function index() {
-        $cidades = Cidade::orderBy("nome")->paginate(5);
+        public function index(Request $filtro) {
+            $filtragem = $filtro->get('nome_filtro');
+    
+            if($filtragem == null) {
+                $cidades = Cidade::orderBy("nome")->paginate(5);
+            } else {
+                $cidades = Cidade::where("nome", "like", "%".$filtragem."%")
+                    ->orderBy("nome")
+                    ->paginate(5)
+                    ->setpath("cidades?nome_filtro=".$filtragem);
+            }
         return view('cidades.index', ['cidades' => $cidades]);
     }
 
@@ -33,7 +42,7 @@ class CidadesController extends Controller
         }catch (\PDOException $e) {
             $ret = array("status" => 500, "msg" => $e->getMessage());
         }
-        
+
         return $ret;
     }
     
