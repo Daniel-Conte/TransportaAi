@@ -9,6 +9,7 @@ use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 use \App\Produto;
 use \App\Cidade;
 use \App\Veiculo;
+use \App\Envolvido;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,13 @@ class AppServiceProvider extends ServiceProvider
                 'url'         => 'veiculos',
                 'icon'        => 'fas fa-fw fa-truck',
                 'label'       => Veiculo::count(),
+                'label_color' => 'success',
+            ]);
+            $event->menu->add([
+                'text'        => 'Envolvidos',
+                'url'         => 'envolvidos',
+                'icon'        => 'fas fa-fw fa-user',
+                'label'       => Envolvido::count(),
                 'label_color' => 'success',
             ]);
         });

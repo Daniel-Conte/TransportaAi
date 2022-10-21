@@ -49,4 +49,13 @@ Route::group(["middleware" => "auth"], function() {
         Route::put('update', ['as'=>'veiculos.update', 'uses'=> 'VeiculosController@update']);
         Route::post('store', ['as'=>'veiculos.store', 'uses'=> 'VeiculosController@store']);
     });
+
+    Route::group(['prefix'=> 'envolvidos', 'where'=>['id'=>'[0-9]+']], function() {
+        Route::any('', ['as'=>'envolvidos', 'uses'=> 'EnvolvidosController@index']);
+        Route::get('create', ['as'=>'envolvidos.create', 'uses'=> 'EnvolvidosController@create']);
+        Route::get('{id}/destroy', ['as'=>'envolvidos.destroy', 'uses'=> 'EnvolvidosController@destroy']);
+        Route::get('edit', ['as'=>'envolvidos.edit', 'uses'=> 'EnvolvidosController@edit']);
+        Route::put('update', ['as'=>'envolvidos.update', 'uses'=> 'EnvolvidosController@update']);
+        Route::post('store', ['as'=>'envolvidos.store', 'uses'=> 'EnvolvidosController@store']);
+    });
 });
