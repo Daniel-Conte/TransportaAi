@@ -19,7 +19,7 @@
 @section('content')
     <table class="table table-stripe table-bordered table-hover">
         <thead>
-            <th><i class="fa fa-fw fa-user"></i> CNPJ</th>
+            <th><i class="fa fa-fw fa-user"></i>CNPJ</th>
             <th><i class="fa fa-fw fa-user"></i>Razão Social</th>
             <th><i class="fa fa-fw fa-map-marker"></i>Cidade</th>
             <th></i>Ações</th>

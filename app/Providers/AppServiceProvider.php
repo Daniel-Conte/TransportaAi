@@ -10,6 +10,7 @@ use \App\Produto;
 use \App\Cidade;
 use \App\Veiculo;
 use \App\Envolvido;
+use \App\Transporte;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -58,6 +59,14 @@ class AppServiceProvider extends ServiceProvider
                 'url'         => 'envolvidos',
                 'icon'        => 'fas fa-fw fa-user',
                 'label'       => Envolvido::count(),
+                'label_color' => 'success',
+            ]);
+
+            $event->menu->add([
+                'text'        => 'Transportes',
+                'url'         => 'transportes',
+                'icon'        => 'fas fa-fw fa-truck',
+                'label'       => Transporte::count(),
                 'label_color' => 'success',
             ]);
         });

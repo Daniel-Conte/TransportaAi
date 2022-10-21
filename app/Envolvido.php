@@ -12,4 +12,8 @@ class Envolvido extends Model
     public function cidade(){
         return $this->belongsTo("App\Cidade");
     }
+
+    public function transportes(){
+        return $this->hasMany("App\Transporte");
+    }
 }
