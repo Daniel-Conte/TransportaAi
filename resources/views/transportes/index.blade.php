@@ -28,9 +28,9 @@
         <tbody>
             @foreach($transportes as $transporte)
             <tr>
-                <td>{{ $transporte->envolvido->razao_social}}</td>
-                <td>{{ $transporte->envolvido->razao_social}}</td>
-                <td>{{ $transporte->envolvido->razao_social}}</td>
+                <td>{{ $transporte->remetente->razao_social}}</td>
+                <td>{{ $transporte->destinatario->razao_social}}</td>
+                <td>{{ $transporte->transportadora->razao_social}}</td>
                 <td>{{ $transporte->veiculo->placa}}</td>
                 <td>
                     <a href="{{ route('transportes.edit', ['id'=>\Crypt::encrypt($transporte->id)]) }}" class="btn-sm btn-success">Editar</a>

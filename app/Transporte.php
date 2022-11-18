@@ -9,7 +9,15 @@ class Transporte extends Model
     protected $table = "transportes";
     protected $fillable = ['remetente_id', 'destinatario_id', 'transportadora_id', 'veiculo_id'];
 
-    public function envolvido(){
+    public function remetente(){
+        return $this->belongsTo("App\Envolvido");
+    }
+
+    public function destinatario(){
+        return $this->belongsTo("App\Envolvido");
+    }
+
+    public function transportadora(){
         return $this->belongsTo("App\Envolvido");
     }
 

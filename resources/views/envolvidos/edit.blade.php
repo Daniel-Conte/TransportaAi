@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Edita Envolvido', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Editar Envolvido', ['class'=>'btn btn-primary']) !!}
             {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
         </div>
 
