@@ -12,7 +12,7 @@ class TransportesController extends Controller
     public function index(Request $filtro){
         $filtragem = $filtro->get('veiculo_filtro');
         if($filtragem == null)
-            $transportes = Transporte::orderBy('veiculo_id')->paginate(5);
+            $transportes = Transporte::orderBy('id')->paginate(5);
         else
             $transportes = Transporte::where('veiculo_id', 'like', '%'.$filtragem.'%')
                 ->orderBy("veiculo_id")
