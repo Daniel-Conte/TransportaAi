@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transporte;
 use App\Http\Requests\TransporteRequest;
+use App\Produto;
+use App\TransporteProduto;
 use Illuminate\Support\Facades\Crypt;
 
 class TransportesController extends Controller
@@ -27,8 +29,31 @@ class TransportesController extends Controller
     }
 
     public function store(TransporteRequest $request){
-        $novo_transporte = $request->all();
-        Transporte::create($novo_transporte);
+        $produtos = $request->produtos;
+
+        if(!empty($produtos)) {
+            $transporte = Transporte::create([
+                "remetente_id"=> $request->get("remetente_id"),
+                "destinatario_id"=> $request->get("destinatario_id"),
+                "transportadora_id"=> $request->get("transportadora_id"),
+                "veiculo_id"=> $request->get("veiculo_id"),
+            ]);
+
+            $produtos = array_unique($produtos);
+
+            for($i = 0; $i < count($produtos); $i++) {
+                $produto = Produto::find($request->produtos[$i]);
+
+                TransporteProduto::create([
+                    "transporte_id" => $transporte->id,
+                    "produto_id" => $produtos[$i],
+                    "quantidade" => $request->quantidade[$i],
+                    "peso_total" => floatval($produto->peso) * intval($request->quantidade[$i])
+                ]);
+            }
+        } else {
+            return redirect()->back()->withInput()->with("message", "Não é possível salvar um transporte sem adicionar, pelo menos, UM produto!");
+        }
 
         return redirect()->route('transportes');
     }

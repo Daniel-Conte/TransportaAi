@@ -24,4 +24,8 @@ class Transporte extends Model
     public function veiculo(){
         return $this->belongsTo("App\Veiculo");
     }
+
+    public function produtos(){
+        return $this->hasMany("App\TransporteProduto");
+    }
 }

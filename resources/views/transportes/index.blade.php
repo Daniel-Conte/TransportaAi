@@ -21,8 +21,10 @@
         <thead>
             <th><i class="fa fa-fw fa-user"></i>Rementente</th>
             <th><i class="fa fa-fw fa-user"></i>Destinatario</th>
-            <th><i class="fa fa-fw fa-truck"></i>Transportadora</th>
+            <th><i class="fa fa-fw fa-user"></i>Transportadora</th>
             <th><i class="fa fa-fw fa-truck"></i>Veiculo</th>
+            <th><i class="fa fa-fw fa-shopping-cart"></i>Produtos</th>
+            <th><i class="fa fa-fw fa-weight-hanging"></i>Peso total</th>
             <th></i>Ações</th>
         </thead>
         <tbody>
@@ -32,6 +34,14 @@
                 <td>{{ $transporte->destinatario->razao_social}}</td>
                 <td>{{ $transporte->transportadora->razao_social}}</td>
                 <td>{{ $transporte->veiculo->placa}}</td>
+                <td>
+                    @foreach ($transporte->produtos as $p)
+                        <li>{{ $p->quantidade }}x {{ $p->produto->descricao }}</li>
+                    @endforeach
+                </td>
+                <td>
+                    {{ array_reduce($transporte->produtos->toArray(), function($total, $curr) { return $total + floatVal($curr["peso_total"]); }, 0) }} Kg
+                </td>
                 <td>
                     <a href="{{ route('transportes.edit', ['id'=>\Crypt::encrypt($transporte->id)]) }}" class="btn-sm btn-success">Editar</a>
                     <a href="#" onclick=" return ConfirmaExclusao({{$transporte->id}})" class="btn-sm btn-danger">Remover</a>

@@ -65,7 +65,7 @@ class AppServiceProvider extends ServiceProvider
             $event->menu->add([
                 'text'        => 'Transportes',
                 'url'         => 'transportes',
-                'icon'        => 'fas fa-fw fa-truck',
+                'icon'        => 'fas fa-fw fa-file-contract',
                 'label'       => Transporte::count(),
                 'label_color' => 'success',
             ]);
