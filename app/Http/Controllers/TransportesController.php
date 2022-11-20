@@ -7,6 +7,7 @@ use App\Transporte;
 use App\Http\Requests\TransporteRequest;
 use App\Produto;
 use App\TransporteProduto;
+use App\Veiculo;
 
 class TransportesController extends Controller
 {
@@ -36,14 +37,27 @@ class TransportesController extends Controller
         }
 
         if(!empty($produtos)) {
+            $veiculo = Veiculo::find($request->veiculo_id);
+            $produtos = array_unique($produtos);
+
+            $peso_total = 0;
+
+            for($i = 0; $i < count($produtos); $i++) {
+                $produto = Produto::find($request->produtos[$i]);
+
+                $peso_total = $peso_total + (floatval($produto->peso) * intval($request->quantidade[$i]));
+            }
+
+            if($veiculo->capacidade_carga < $peso_total) {
+                return redirect()->back()->withInput()->with("message", "Peso total dos produtos não pode ser maior que a capacidade de carga do veículo");
+            }
+
             $transporte = Transporte::create([
                 "remetente_id"=> $request->get("remetente_id"),
                 "destinatario_id"=> $request->get("destinatario_id"),
                 "transportadora_id"=> $request->get("transportadora_id"),
                 "veiculo_id"=> $request->get("veiculo_id"),
             ]);
-
-            $produtos = array_unique($produtos);
 
             for($i = 0; $i < count($produtos); $i++) {
                 $produto = Produto::find($request->produtos[$i]);
