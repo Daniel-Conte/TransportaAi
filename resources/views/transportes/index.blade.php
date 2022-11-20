@@ -25,7 +25,6 @@
             <th><i class="fa fa-fw fa-truck"></i>Veiculo</th>
             <th><i class="fa fa-fw fa-shopping-cart"></i>Produtos</th>
             <th><i class="fa fa-fw fa-weight-hanging"></i>Peso total</th>
-            <th></i>Ações</th>
         </thead>
         <tbody>
             @foreach($transportes as $transporte)
@@ -42,10 +41,6 @@
                 <td>
                     {{ array_reduce($transporte->produtos->toArray(), function($total, $curr) { return $total + floatVal($curr["peso_total"]); }, 0) }} Kg
                 </td>
-                <td>
-                    <a href="{{ route('transportes.edit', ['id'=>\Crypt::encrypt($transporte->id)]) }}" class="btn-sm btn-success">Editar</a>
-                    <a href="#" onclick=" return ConfirmaExclusao({{$transporte->id}})" class="btn-sm btn-danger">Remover</a>
-                </td>
             </tr>
             @endforeach
         </tbody>
@@ -55,7 +50,3 @@
     
     <a href="{{ route('transportes.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop
-
-@section('table-delete')
-"transportes"
-@endsection
