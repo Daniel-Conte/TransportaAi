@@ -30,6 +30,11 @@ class TransportesController extends Controller
 
     public function store(TransporteRequest $request){
         $produtos = $request->produtos;
+        $envolvidos = array($request->get("remetente_id"), $request->get("destinatario_id"), $request->get("transportadora_id"));
+
+        if(count(array_unique($envolvidos)) < 3) {
+            return redirect()->back()->withInput()->with("message", "Remetente, destinatário e transportadora devem ser diferentes");
+        }
 
         if(!empty($produtos)) {
             $transporte = Transporte::create([
