@@ -31,7 +31,7 @@
             @foreach($produtos as $produto)
                 <tr>
                     <td>{{ $produto->descricao }}</td>
-                    <td>{{ $produto->peso }}</td>
+                    <td>{{ $produto->peso }} Kg</td>
                     <td>
                         <a href="{{ route("produtos.edit", ["id"=> \Crypt::encrypt($produto->id)]) }}" class="btn-sm btn-success">Editar</a>
                         <a href="#" onclick="return ConfirmaExclusao({{ $produto->id }})" class="btn-sm btn-danger">Remover</a>
