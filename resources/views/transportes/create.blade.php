@@ -45,7 +45,7 @@
             {!! Form::label('veiculo_id', 'Veiculo:') !!}
             {!! Form::select('veiculo_id',
                 \App\Veiculo::orderBy('placa')->pluck('placa', 'id')->toArray(),
-                null, ['class'=>'form-control', 'required']) !!}
+                null, ['class'=>'form-control text-uppercase', 'id'=>'field_veiculo', 'required']) !!}
         </div>
 
         <h4>Produtos</h4>
@@ -67,7 +67,9 @@
 
 @section("js")
     <script>
-        $(document).ready(function() {
+        $(document).ready(function() { 
+            $("#field_veiculo > option").mask("AAA-9A99"); 
+
             var wrapper = $(".input_fields_wrap")
             var add_button = $(".add_field_button")
             var x = 0;

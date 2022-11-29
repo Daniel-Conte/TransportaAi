@@ -32,7 +32,7 @@
                 <td>{{ $transporte->remetente->razao_social}}</td>
                 <td>{{ $transporte->destinatario->razao_social}}</td>
                 <td>{{ $transporte->transportadora->razao_social}}</td>
-                <td>{{ $transporte->veiculo->placa}}</td>
+                <td class="placa text-uppercase">{{ $transporte->veiculo->placa}}</td>
                 <td>
                     @foreach ($transporte->produtos as $p)
                         <li>{{ $p->quantidade }}x {{ $p->produto->descricao }}</li>
@@ -49,4 +49,12 @@
     {{$transportes->links()}}
     
     <a href="{{ route('transportes.create', []) }}" class="btn btn-info">Adicionar</a>
+@stop
+
+@section("js")
+    <script>
+        $(document).ready(function() {
+            $(".placa").mask("AAA-9A99"); 
+        })
+    </script>
 @stop

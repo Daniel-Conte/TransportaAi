@@ -27,7 +27,7 @@
         <tbody>
             @foreach($envolvidos as $envolvido)
             <tr>
-                <td>{{ $envolvido->cnpj}}</td>
+                <td class="cnpj text-uppercase">{{ $envolvido->cnpj}}</td>
                 <td>{{ $envolvido->razao_social}}</td>
                 <td>{{ $envolvido->cidade->nome}}</td>
                 <td>
@@ -47,3 +47,11 @@
 @section('table-delete')
 "envolvidos"
 @endsection
+
+@section("js")
+    <script>
+        $(document).ready(function() {
+            $(".cnpj").mask("99.999.999/9999-99"); 
+        })
+    </script>
+@stop

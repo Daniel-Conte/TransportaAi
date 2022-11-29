@@ -15,7 +15,7 @@
 
     <div class="form-group">
         {!! Form::label("placa", "Placa:") !!}
-        {!! Form::text("placa", null, ["class"=>"form-control", "required"]) !!}
+        {!! Form::text("placa", null, ["class"=>"form-control text-uppercase", 'id'=>'field_placa', "required"]) !!}
     </div>
 
     <div class="form-group">
@@ -29,4 +29,16 @@
     </div>
 
     {!! Form::close() !!}
+@stop
+
+@section("js")
+    <script>
+        $(document).ready(function() {
+            $("#field_placa").mask("AAA-9A99");
+
+            $('form').on('submit', function(){
+                $('#field_placa').unmask();
+            });
+        })
+    </script>
 @stop

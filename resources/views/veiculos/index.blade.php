@@ -30,7 +30,7 @@
         <tbody>
             @foreach($veiculos as $veiculo)
                 <tr>
-                    <td>{{ $veiculo->placa }}</td>
+                    <td class="placa text-uppercase">{{ $veiculo->placa }}</td>
                     <td>{{ $veiculo->capacidade_carga }} Kg</td>
                     <td>
                         <a href="{{ route("veiculos.edit", ["id"=> \Crypt::encrypt($veiculo->id)]) }}" class="btn-sm btn-success">Editar</a>
@@ -49,3 +49,11 @@
  @section("table-delete")
     "veiculos"
  @stop()
+
+ @section("js")
+    <script>
+        $(document).ready(function() {
+            $(".placa").mask("AAA-9A99");
+        })
+    </script>
+@stop
