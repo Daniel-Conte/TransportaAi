@@ -20,7 +20,39 @@
 
     <div class="form-group">
         {!! Form::label("uf", "Uf:") !!}
-        {!! Form::text("uf", null, ["class"=>"form-control", "required"]) !!}
+        {!! Form::select("uf", 
+            array(
+                "RS"=>"RS", 
+                "SC"=>"SC", 
+                "PR"=>"PR", 
+                "MS"=>"MS", 
+                "MT"=>"MT", 
+                "GO"=>"GO", 
+                "DF"=>"DF",
+                "MG"=>"MG",
+                "RJ"=>"RJ",
+                "SP"=>"SP",
+                "ES"=>"ES",
+                "BA"=>"BA",
+                "SE"=>"SE",
+                "PB"=>"PB",
+                "PE"=>"PE",
+                "AL"=>"AL",
+                "RN"=>"RN",
+                "CE"=>"CE",
+                "TO"=>"TO",
+                "PI"=>"PI",
+                "MA"=>"MA",
+                "PA"=>"PA",
+                "AP"=>"AP",
+                "RR"=>"RR",
+                "RO"=>"RO",
+                "AM"=>"AM",
+                "AC"=>"AC",
+            ), 
+            null, 
+            ["class"=>"form-control", "required"]
+        ) !!}
     </div>
 
     <div class="form-group">
