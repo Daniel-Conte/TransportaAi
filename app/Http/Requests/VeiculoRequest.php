@@ -24,7 +24,7 @@ class VeiculoRequest extends FormRequest
     public function rules()
     {
         return [
-            'placa' => 'required|size:7|unique:App\Veiculo,placa',
+            'placa' => 'required|formato_placa_de_veiculo',
             'capacidade_carga' => 'required',
         ];
     }
